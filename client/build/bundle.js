@@ -58,41 +58,10 @@
 	
 	  var bankView = new BankView(bank);
 	
+	  bankView.renderH4TagsToHTML();
 	  bankView.renderAllToHTML();
 	  bankView.renderBusinessToHTML();
 	  bankView.renderPersonalToHTML();
-	
-	
-	
-	  // var businessTable = document.getElementById('business_table');
-	
-	// var businessTableTotalRow = document.createElement('tr');
-	// var businessTableTotalHead = document.createElement('th');
-	// var businessTableTotalCell = document.createElement('td');
-	// businessTableTotalHead.innerText = "Total";
-	// businessTableTotalCell.innerText = "£" + bank.totalCash("business").toFixed(2);
-	// businessTableTotalRow.appendChild(businessTableTotalHead);
-	// businessTableTotalRow.appendChild(businessTableTotalCell);
-	
-	// for (account of bank.filteredAccounts('business')){
-	//   var row = document.createElement('tr');
-	
-	//   var head = document.createElement('th');
-	//   head.innerText = account.owner;
-	
-	//   var cell = document.createElement('td');
-	//   cell.innerText = "£" + account.amount.toFixed(2);
-	
-	//   row.appendChild(head);
-	//   row.appendChild(cell);
-	//   businessTable.appendChild(row);
-	// }
-	// businessTable.appendChild(businessTableTotalRow);
-	
-	///////////////////////
-	
-	
-	
 	
 	}
 
@@ -164,7 +133,7 @@
 	  "type": "business"
 	  },
 	  { "owner": "Rick",
-	  "amount": 1.00,
+	  "amount": 101.00,
 	  "type": "business"
 	  },
 	  { "owner": "Bertie",
@@ -172,7 +141,7 @@
 	  "type": "personal"
 	  },
 	  { "owner": "Jo",
-	  "amount": 15.15,
+	  "amount": 115.15,
 	  "type": "personal"
 	  },
 	  { "owner": "Cookie",
@@ -212,13 +181,32 @@
 	}
 	
 	BankView.prototype = {
-	     renderAllToHTML(){
-	          var totalH4 = document.getElementById('all_accounts');
-	          totalH4.innerText = "All Accounts";
-	          var businessH4 = document.getElementById('business');
-	          businessH4.innerText = "Business Accounts";
-	          var personalH4 = document.getElementById('personal');
-	          personalH4.innerText = "Personal Accounts";
+	          renderH4TagsToHTML(){
+	               var totalH4 = document.getElementById('all_accounts');
+	               totalH4.innerText = "All Accounts";
+	               var businessH4 = document.getElementById('business');
+	               businessH4.innerText = "Business Accounts";
+	               var personalH4 = document.getElementById('personal');
+	               personalH4.innerText = "Personal Accounts";
+	          },
+	
+	          tableBuilder(accounts, table){
+	               for (account of accounts) {
+	                    var row = document.createElement('tr');
+	                    var head = document.createElement('th');
+	                    var cell = document.createElement('td');
+	
+	                    head.innerText = account.owner;
+	                    cell.innerText = "£" + account.amount.toFixed(2);
+	
+	                    row.appendChild(head);
+	                    row.appendChild(cell);
+	
+	                    table.appendChild(row);
+	               }
+	          },
+	
+	          renderAllToHTML(){
 	
 	          var accountsTable = document.getElementById('accounts_table');
 	
@@ -231,19 +219,8 @@
 	          accountsTableTotalRow.appendChild(accountsTableTotalHead);
 	          accountsTableTotalRow.appendChild(accountsTableTotalCell);
 	
-	          for (account of this.bank.accounts){
-	            var row = document.createElement('tr');
+	          this.tableBuilder(this.bank.accounts, accountsTable);
 	
-	            var head = document.createElement('th');
-	            head.innerText = account.owner;
-	
-	            var cell = document.createElement('td');
-	            cell.innerText = "£" + account.amount.toFixed(2);
-	
-	            row.appendChild(head);
-	            row.appendChild(cell);
-	            accountsTable.appendChild(row);
-	          }
 	          accountsTable.appendChild(accountsTableTotalRow);
 	     },
 	     renderBusinessToHTML(){
@@ -256,21 +233,9 @@
 	          businessTableTotalRow.appendChild(businessTableTotalHead);
 	          businessTableTotalRow.appendChild(businessTableTotalCell);
 	
-	          for (account of this.bank.filteredAccounts('business')){
-	            var row = document.createElement('tr');
+	          this.tableBuilder(this.bank.filteredAccounts('business'), businessTable);
 	
-	            var head = document.createElement('th');
-	            head.innerText = account.owner;
-	
-	            var cell = document.createElement('td');
-	            cell.innerText = "£" + account.amount.toFixed(2);
-	
-	            row.appendChild(head);
-	            row.appendChild(cell);
-	            businessTable.appendChild(row);
-	          }
 	          businessTable.appendChild(businessTableTotalRow);
-	
 	     },
 	     renderPersonalToHTML(){
 	          var personalTable = document.getElementById('personal_table');
@@ -282,21 +247,9 @@
 	          personalTableTotalRow.appendChild(personalTableTotalHead);
 	          personalTableTotalRow.appendChild(personalTableTotalCell);
 	
-	          for (account of this.bank.filteredAccounts('personal')){
-	            var row = document.createElement('tr');
+	          this.tableBuilder(this.bank.filteredAccounts('personal'), personalTable);
 	
-	            var head = document.createElement('th');
-	            head.innerText = account.owner;
-	
-	            var cell = document.createElement('td');
-	            cell.innerText = "£" + account.amount.toFixed(2);
-	
-	            row.appendChild(head);
-	            row.appendChild(cell);
-	            personalTable.appendChild(row);
-	          }
 	          personalTable.appendChild(personalTableTotalRow);
-	
 	     }
 	}
 	

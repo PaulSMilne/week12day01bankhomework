@@ -3,13 +3,32 @@ var BankView = function(bank){
 }
 
 BankView.prototype = {
-     renderAllToHTML(){
-          var totalH4 = document.getElementById('all_accounts');
-          totalH4.innerText = "All Accounts";
-          var businessH4 = document.getElementById('business');
-          businessH4.innerText = "Business Accounts";
-          var personalH4 = document.getElementById('personal');
-          personalH4.innerText = "Personal Accounts";
+          renderH4TagsToHTML(){
+               var totalH4 = document.getElementById('all_accounts');
+               totalH4.innerText = "All Accounts";
+               var businessH4 = document.getElementById('business');
+               businessH4.innerText = "Business Accounts";
+               var personalH4 = document.getElementById('personal');
+               personalH4.innerText = "Personal Accounts";
+          },
+
+          tableBuilder(accounts, table){
+               for (account of accounts) {
+                    var row = document.createElement('tr');
+                    var head = document.createElement('th');
+                    var cell = document.createElement('td');
+
+                    head.innerText = account.owner;
+                    cell.innerText = "£" + account.amount.toFixed(2);
+
+                    row.appendChild(head);
+                    row.appendChild(cell);
+
+                    table.appendChild(row);
+               }
+          },
+
+          renderAllToHTML(){
 
           var accountsTable = document.getElementById('accounts_table');
 
@@ -22,19 +41,8 @@ BankView.prototype = {
           accountsTableTotalRow.appendChild(accountsTableTotalHead);
           accountsTableTotalRow.appendChild(accountsTableTotalCell);
 
-          for (account of this.bank.accounts){
-            var row = document.createElement('tr');
+          this.tableBuilder(this.bank.accounts, accountsTable);
 
-            var head = document.createElement('th');
-            head.innerText = account.owner;
-
-            var cell = document.createElement('td');
-            cell.innerText = "£" + account.amount.toFixed(2);
-
-            row.appendChild(head);
-            row.appendChild(cell);
-            accountsTable.appendChild(row);
-          }
           accountsTable.appendChild(accountsTableTotalRow);
      },
      renderBusinessToHTML(){
@@ -47,21 +55,9 @@ BankView.prototype = {
           businessTableTotalRow.appendChild(businessTableTotalHead);
           businessTableTotalRow.appendChild(businessTableTotalCell);
 
-          for (account of this.bank.filteredAccounts('business')){
-            var row = document.createElement('tr');
+          this.tableBuilder(this.bank.filteredAccounts('business'), businessTable);
 
-            var head = document.createElement('th');
-            head.innerText = account.owner;
-
-            var cell = document.createElement('td');
-            cell.innerText = "£" + account.amount.toFixed(2);
-
-            row.appendChild(head);
-            row.appendChild(cell);
-            businessTable.appendChild(row);
-          }
           businessTable.appendChild(businessTableTotalRow);
-
      },
      renderPersonalToHTML(){
           var personalTable = document.getElementById('personal_table');
@@ -73,21 +69,9 @@ BankView.prototype = {
           personalTableTotalRow.appendChild(personalTableTotalHead);
           personalTableTotalRow.appendChild(personalTableTotalCell);
 
-          for (account of this.bank.filteredAccounts('personal')){
-            var row = document.createElement('tr');
+          this.tableBuilder(this.bank.filteredAccounts('personal'), personalTable);
 
-            var head = document.createElement('th');
-            head.innerText = account.owner;
-
-            var cell = document.createElement('td');
-            cell.innerText = "£" + account.amount.toFixed(2);
-
-            row.appendChild(head);
-            row.appendChild(cell);
-            personalTable.appendChild(row);
-          }
           personalTable.appendChild(personalTableTotalRow);
-
      }
 }
 

@@ -16,7 +16,7 @@ module.exports = [
   "type": "business"
   },
   { "owner": "Rick",
-  "amount": 1.00,
+  "amount": 101.00,
   "type": "business"
   },
   { "owner": "Bertie",
@@ -24,7 +24,7 @@ module.exports = [
   "type": "personal"
   },
   { "owner": "Jo",
-  "amount": 15.15,
+  "amount": 115.15,
   "type": "personal"
   },
   { "owner": "Cookie",
