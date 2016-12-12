@@ -1,23 +1,37 @@
 table     {width:50%;}
 
-h1        {font-family: 'Cinzel Decorative', cursive;}
+#main_content {
+               border:silver solid 1px;
+               margin:auto;
+               padding:10px;
+               width:66%;
+         }
+
+h1        {
+               font-family: 'Cinzel Decorative', cursive;
+               text-align:center;
+          }
 
 h4   {
-               font-family: 'Monsieur La Doulaise', cursive;
-               font-size: 2em; 
+               font-family: 'Cinzel Decorative', cursive;
+               font-size: 1.25em; 
+               text-align: center;
           }
+
+table     {width: 100%;}
 
 th, td    {
                border: red 1px solid; 
-               font-family: 'Monsieur La Doulaise', cursive;
-               font-size: 1.5em; 
-               padding:7px;
+               font-family: 'Italliano', cursive;
+               font-size: 1em; 
+               padding:3px;
           }
 
 th        {
                background-color:#D7EED4;
                font-weight:normal; 
                text-align: left; 
+               width:25%;
           }
 td        {
                background-color:#F7E5B5;

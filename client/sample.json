@@ -1,22 +1,42 @@
 module.exports = [
   { "owner": "Jay",
-    "amount": 125.50,
-    "type": "personal"
+  "amount": 125.50,
+  "type": "personal"
   },
   { "owner": "Val",
-    "amount": 55125.10,
-    "type": "personal"
+  "amount": 55125.10,
+  "type": "personal"
   },
   { "owner": "Marc",
-    "amount": 400.00,
-    "type": "personal"
+  "amount": 400.00,
+  "type": "personal"
   },
   { "owner": "Keith",
-    "amount": 220.25,
-    "type": "business"
+  "amount": 220.25,
+  "type": "business"
   },
   { "owner": "Rick",
-    "amount": 1.00,
-    "type": "business"
+  "amount": 1.00,
+  "type": "business"
   },
+  { "owner": "Bertie",
+  "amount": 500.76,
+  "type": "personal"
+  },
+  { "owner": "Jo",
+  "amount": 15.15,
+  "type": "personal"
+  },
+  { "owner": "Cookie",
+  "amount": 1922.37,
+  "type": "personal"
+  },
+  { "owner": "Sian",
+  "amount": 723.44,
+  "type": "business"
+  },
+  { "owner": "Allan",
+  "amount": 109927.73,
+  "type": "business"
+  }
 ]

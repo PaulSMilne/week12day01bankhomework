@@ -1,73 +1,51 @@
 var Bank = require('./bank/bank.js');
-var BankView = require('./views/bankView.js');
-var Account = require('./bank/account.js');
 var sampleAccounts = require('../sample.json');
+var Account = require('./bank/account.js');
+var BankView = require('./views/bankView.js');
 
-window.onload = function() {
-  console.log('loaded');
+window.onload = function () {
   var bank = new Bank();
 
   for (accountData of sampleAccounts){
-     bank.addAccount(new Account(accountData));
-  }
-  console.log("We created a new bank:", bank);
-
-  var totalDisplay = document.getElementById('total');
-  totalDisplay.innerText = "All Accounts";
-
-  var accountList = document.getElementById('accounts');
-
-  for (account of bank.accounts) {
-     var accountListItem = document.createElement('li');
-     accountListItem.innerText = account.owner + ": £" + account.amount.toFixed(2);
-     accountList.appendChild(accountListItem);
+  bank.addAccount(new Account(accountData));
   }
 
-  var businessTotal = document.getElementById('business_total');
-  var personalTotal = document.getElementById('personal_total');
-  var businessList = document.getElementById('business_accounts');
-  var personalList = document.getElementById('personal_accounts');
+  var bankView = new BankView(bank);
 
-  var totalBusiness = bank.totalCash("business");
-  var totalPersonal = bank.totalCash("personal");
-
-  businessTotal.innerText = "Total Business Cash: £" + totalBusiness.toFixed(2);
-
-
-  var businessAccounts = bank.filteredAccounts("business");
-  var personalAccounts = bank.filteredAccounts("personal");
-
-  for (businessAccount of businessAccounts) {
-     var accountListItem = document.createElement('li');
-     accountListItem.innerText = businessAccount.owner + ": £" + businessAccount.amount.toFixed(2);
-     businessList.appendChild(accountListItem);
-  }
+  bankView.renderAllToHTML();
+  bankView.renderBusinessToHTML();
+  bankView.renderPersonalToHTML();
 
 
 
-  var personalTable = document.getElementById('personal_table');
+  // var businessTable = document.getElementById('business_table');
 
-  for (personalAccount of personalAccounts) {
-     var row = document.createElement('tr');
-     var head = document.createElement('th');
-     var cell = document.createElement('td');
+// var businessTableTotalRow = document.createElement('tr');
+// var businessTableTotalHead = document.createElement('th');
+// var businessTableTotalCell = document.createElement('td');
+// businessTableTotalHead.innerText = "Total";
+// businessTableTotalCell.innerText = "£" + bank.totalCash("business").toFixed(2);
+// businessTableTotalRow.appendChild(businessTableTotalHead);
+// businessTableTotalRow.appendChild(businessTableTotalCell);
 
-     head.innerText = personalAccount.owner;
-     cell.innerText = "£" + personalAccount.amount.toFixed(2);
-     row.appendChild(head);
-     row.appendChild(cell);
-     personalTable.appendChild(row);
-  }
-  var totalRow = document.createElement('tr');
-  var totalHead = document.createElement('th');
-  totalHead.innerText = "Total";
-  var totalCell = document.createElement('td');
-  totalCell.innerText = "£" + totalPersonal.toFixed(2);
-  totalRow.appendChild(totalHead);
-  totalRow.appendChild(totalCell);
-  personalTable.appendChild(totalRow);
+// for (account of bank.filteredAccounts('business')){
+//   var row = document.createElement('tr');
+
+//   var head = document.createElement('th');
+//   head.innerText = account.owner;
+
+//   var cell = document.createElement('td');
+//   cell.innerText = "£" + account.amount.toFixed(2);
+
+//   row.appendChild(head);
+//   row.appendChild(cell);
+//   businessTable.appendChild(row);
+// }
+// businessTable.appendChild(businessTableTotalRow);
+
+///////////////////////
 
 
 
-}
+
 }
