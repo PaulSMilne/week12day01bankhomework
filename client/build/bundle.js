@@ -104,6 +104,13 @@
 	  },
 	  accountAverage:function() {
 	    return this.totalCash()/this.accounts.length;
+	  },
+	
+	  interestPayment: function(interest){
+	    for (account of this.accounts){
+	      account.amount += account.amount*(interest/100);
+	    }
+	
 	  }
 	};
 	

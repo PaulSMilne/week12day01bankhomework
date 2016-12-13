@@ -48,4 +48,15 @@ describe('bank', function() {
     bank.addAccount(account3);
     assert.equal( 200, bank.totalCash('business') );
   });
+  it("should increase the total account amount by a given percentage", function(){
+    var bank = new Bank();
+    var account1 = new Account({owner:'Jay',amount:10, type:'business'});
+    var account2 = new Account({owner:'Val',amount:10, type:'business'});
+    var account3 = new Account({owner:'Keith',amount:10, type:'personal'});
+    bank.addAccount(account1);
+    bank.addAccount(account2);
+    bank.addAccount(account3);
+    bank.interestPayment(10);
+    assert.equal(33, bank.totalCash());
+});
 });
