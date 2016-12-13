@@ -12,9 +12,17 @@ window.onload = function () {
 
   var bankView = new BankView(bank);
 
-  bankView.renderH4TagsToHTML();
-  bankView.renderAllToHTML();
-  bankView.renderBusinessToHTML();
-  bankView.renderPersonalToHTML();
+  // bankView.renderH4TagsToHTML();
+  // bankView.renderAllToHTML();
+  // bankView.renderBusinessToHTML();
+  // bankView.renderPersonalToHTML();
 
+  bankView.doHTML();
+
+  var interestButton = document.getElementById('interest');
+
+  interestButton.onclick = function(){
+     bank.interestPayment(10);
+     bankView.doHTML();
+     }
 }

@@ -58,5 +58,5 @@ describe('bank', function() {
     bank.addAccount(account3);
     bank.interestPayment(10);
     assert.equal(33, bank.totalCash());
-});
+  });
 });

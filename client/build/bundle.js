@@ -58,11 +58,19 @@
 	
 	  var bankView = new BankView(bank);
 	
-	  bankView.renderH4TagsToHTML();
-	  bankView.renderAllToHTML();
-	  bankView.renderBusinessToHTML();
-	  bankView.renderPersonalToHTML();
+	  // bankView.renderH4TagsToHTML();
+	  // bankView.renderAllToHTML();
+	  // bankView.renderBusinessToHTML();
+	  // bankView.renderPersonalToHTML();
 	
+	  bankView.doHTML();
+	
+	  var interestButton = document.getElementById('interest');
+	
+	  interestButton.onclick = function(){
+	     bank.interestPayment(10);
+	     bankView.doHTML();
+	     }
 	}
 
 /***/ },
@@ -110,7 +118,6 @@
 	    for (account of this.accounts){
 	      account.amount += account.amount*(interest/100);
 	    }
-	
 	  }
 	};
 	
@@ -232,6 +239,7 @@
 	     },
 	     renderBusinessToHTML(){
 	          var businessTable = document.getElementById('business_table');
+	
 	          var businessTableTotalRow = document.createElement('tr');
 	          var businessTableTotalHead = document.createElement('th');
 	          var businessTableTotalCell = document.createElement('td');
@@ -246,6 +254,7 @@
 	     },
 	     renderPersonalToHTML(){
 	          var personalTable = document.getElementById('personal_table');
+	
 	          var personalTableTotalRow = document.createElement('tr');
 	          var personalTableTotalHead = document.createElement('th');
 	          var personalTableTotalCell = document.createElement('td');
@@ -257,6 +266,14 @@
 	          this.tableBuilder(this.bank.filteredAccounts('personal'), personalTable);
 	
 	          personalTable.appendChild(personalTableTotalRow);
+	     },
+	
+	     doHTML(){
+	          this.renderH4TagsToHTML();
+	          this.renderAllToHTML();
+	          this.renderBusinessToHTML();
+	          this.renderPersonalToHTML();
+	
 	     }
 	}
 	

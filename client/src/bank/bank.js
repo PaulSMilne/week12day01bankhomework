@@ -39,7 +39,6 @@ Bank.prototype = {
     for (account of this.accounts){
       account.amount += account.amount*(interest/100);
     }
-
   }
 };
 

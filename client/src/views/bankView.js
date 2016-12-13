@@ -47,6 +47,7 @@ BankView.prototype = {
      },
      renderBusinessToHTML(){
           var businessTable = document.getElementById('business_table');
+
           var businessTableTotalRow = document.createElement('tr');
           var businessTableTotalHead = document.createElement('th');
           var businessTableTotalCell = document.createElement('td');
@@ -61,6 +62,7 @@ BankView.prototype = {
      },
      renderPersonalToHTML(){
           var personalTable = document.getElementById('personal_table');
+
           var personalTableTotalRow = document.createElement('tr');
           var personalTableTotalHead = document.createElement('th');
           var personalTableTotalCell = document.createElement('td');
@@ -72,6 +74,14 @@ BankView.prototype = {
           this.tableBuilder(this.bank.filteredAccounts('personal'), personalTable);
 
           personalTable.appendChild(personalTableTotalRow);
+     },
+
+     doHTML(){
+          this.renderH4TagsToHTML();
+          this.renderAllToHTML();
+          this.renderBusinessToHTML();
+          this.renderPersonalToHTML();
+
      }
 }
 
